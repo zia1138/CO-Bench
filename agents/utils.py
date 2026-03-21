@@ -9,7 +9,10 @@ def call_llm(question: str, model='openai/gpt-4o', reasoning_effort=None) -> str
     from litellm import completion
     litellm.drop_params = True
     messages = [{"content": question, "role": "user"}]
-    response = completion(model=model, messages=messages, reasoning_effort=reasoning_effort)
+    response = completion(model=model, messages=messages, reasoning_effort=reasoning_effort,
+                          custom_llm_provider="openai",
+                          base_url="https://lightning.ai/api/v1/",
+                          api_key=os.environ.get("LIGHTNING_API_KEY") + "/" + os.environ.get("LIGHTNING_ORG"))
     return response.choices[0].message.content
 
 

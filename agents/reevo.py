@@ -16,7 +16,10 @@ def call_llm(messages, model='openai/gpt-4o', reasoning_effort=None, n=None):
     import litellm
     from litellm import completion
     litellm.drop_params = True
-    response = completion(model=model, messages=messages, reasoning_effort=reasoning_effort, n=n)
+    response = completion(model=model, messages=messages, reasoning_effort=reasoning_effort, n=n,
+                          custom_llm_provider="openai",
+                          base_url="https://lightning.ai/api/v1/",
+                          api_key=os.environ.get("LIGHTNING_API_KEY") + "/" + os.environ.get("LIGHTNING_ORG"))
     if n == 1 or n is None:
         return response.choices[0].message.content
     else:

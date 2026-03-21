@@ -30,5 +30,9 @@ class LiteLLMClient(BaseClient):
     
     def _chat_completion_api(self, messages: list[dict], temperature: float, n: int = 1):
         assert n == 1
-        response = completion(model=self.model, messages=messages, temperature=temperature)
+        import os
+        response = completion(model=self.model, messages=messages, temperature=temperature,
+                              custom_llm_provider="openai",
+                              base_url="https://lightning.ai/api/v1/",
+                              api_key=os.environ.get("LIGHTNING_API_KEY") + "/" + os.environ.get("LIGHTNING_ORG"))
         return response.choices

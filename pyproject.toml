@@ -1,0 +1,77 @@
+[project]
+name = "co-bench"
+version = "0.1.0"
+description = "CO-Bench: Combinatorial Optimization Benchmark"
+requires-python = ">=3.11"
+dependencies = [
+    # Basic / LLM
+    "litellm",
+    "openai",
+    "anthropic",
+    "datasets",
+    "psutil",
+    "cloudpickle",
+    # Aide and utilities
+    "humanize",
+    "jsonschema",
+    "dataclasses-json",
+    "backoff",
+    "funcy",
+    "black",
+    "genson",
+    "coolname",
+    "omegaconf",
+    "shutup",
+    "igraph",
+    # Optimization libraries
+    "scipy",
+    "ortools",
+    "pyomo",
+    "gekko",
+    "cvxpy",
+    "networkx",
+    "python-tsp",
+    "simanneal",
+    "highspy",
+    "pulp==2.2",
+    "deap",
+    "ecos",
+    # Additional imports found in repo
+    "numpy",
+    "rich",
+    "tqdm",
+    "requests",
+    "joblib",
+    "python-dotenv",
+    "typing-extensions",
+    "hydra-core>=1.3.2",
+    "typer>=0.24.1",
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch",
+    "torchvision",
+    "transformers",
+    "foolbox",
+    "eagerpy",
+    "timm",
+]
+web = [
+    "flask",
+    "flask-cors",
+    "streamlit",
+]
+docs = [
+    "python-docx",
+    "matplotlib",
+    "pandas",
+]
+# These packages may need special system-level setup or licenses
+solvers = [
+    "gurobipy",
+    "swiglpk",
+]
+
+[tool.setuptools.packages.find]
+include = ["agents*", "evaluation*"]

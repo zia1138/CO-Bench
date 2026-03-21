@@ -9,7 +9,10 @@ def call_llm(model_name, prompt, temperature=None, max_tokens=None) -> str:
     from litellm import completion
     litellm.drop_params = True
     messages = [{"content": prompt, "role": "user"}]
-    response = completion(model=model_name, messages=messages, temperature=temperature, max_tokens=max_tokens)
+    response = completion(model=model_name, messages=messages, temperature=temperature, max_tokens=max_tokens,
+                          custom_llm_provider="openai",
+                          base_url="https://lightning.ai/api/v1/",
+                          api_key=os.environ.get("LIGHTNING_API_KEY") + "/" + os.environ.get("LIGHTNING_ORG"))
     return response.choices[0].message.content
 
 

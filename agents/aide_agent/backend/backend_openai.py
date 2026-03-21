@@ -33,7 +33,10 @@ def call_llm(question: str, model='openai/gpt-4o', reasoning_effort=None, respon
     litellm.drop_params = True
     messages = [{"content": question, "role": "user"}]
     response = completion(model=model, messages=messages,
-                          reasoning_effort=reasoning_effort, response_format=response_format)
+                          reasoning_effort=reasoning_effort, response_format=response_format,
+                          custom_llm_provider="openai",
+                          base_url="https://lightning.ai/api/v1/",
+                          api_key=os.environ.get("LIGHTNING_API_KEY") + "/" + os.environ.get("LIGHTNING_ORG"))
     return response
 
 def query(system_message, user_message, model, response_format=None, **kwargs):
