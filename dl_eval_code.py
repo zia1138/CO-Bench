@@ -1,6 +1,8 @@
 from huggingface_hub import HfFileSystem
 from pathlib import Path
 
+# Downloads config.py for each problem and saves it as orig.py.
+# This downloads the evaluator code to be used for each problem.
 
 if __name__ == "__main__":
     fs = HfFileSystem()

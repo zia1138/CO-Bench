@@ -60,7 +60,7 @@ The output format is a JSON structure followed by refined code:
             comments_text=comments_text
         )
         # Meet the rule of MIP
-        output = output.replace(' < ', ' \leq ').replace(' > ', ' \geq ')
+        output = output.replace(' < ', ' \\leq ').replace(' > ', ' \\geq ')
         self.previous_answer = output
         return output
 
